@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#details').DataTable();
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Title</th>
+			<td th:text="${film.title}"></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td th:text="${film.description}"></td>
+		</tr>
+		<tr>
+			<th>Release Year</th>
+			<td th:text="${film.releaseYear}"></td>
+		</tr>
+		<tr>
+			<th>Rating</th>
+			<td th:text="${film.rating}"></td>
+		</tr>
+		<tr>
+			<th>Features</th>
+			<td th:text="${film.specialFeatures}"></td>
+		</tr>
+	</table>
+	<table id="details">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>LastName</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="filmActor : ${film.filmActorList}">
+				<td th:text="${filmActor.actor.firstName} "></td>
+				<td th:text="${filmActor.actor.lastName}"></td>
+				<td><a th:href="@{'/actor/detail/' + ${filmActor.actor.actorId}}">
+						Detail</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
