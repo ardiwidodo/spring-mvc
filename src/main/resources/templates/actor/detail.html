@@ -36,7 +36,7 @@
 			$("#link").click(function(){
 				var filmId = $("#idFilm").val();
 				var actorId = $("#idActor").text();
-				$.getJSON("http://localhost:8080/linkActorFilm/"+filmId + "/" + actorId, function(){
+				$.getJSON("http://localhost:8080/linkActorFilm/"+filmId + "/" + actorId, function(data){
 					if(data == 0) location.href = location.href;
 					
 				});
