@@ -25,8 +25,22 @@
 			});
 			console.log(film);
 			$("#filmInput").autocomplete({
-				source : film
-			});		
+				source : film,
+				select : function(event,ui){
+					event.preventDefault();
+					$(this).val(ui.item.label);
+					$("#idFilm").val(ui.item.value);
+				}	
+			});	
+			
+			$("#link").click(function(){
+				var filmId = $("#idFilm").val();
+				var actorId = $("#idActor").text();
+				$.getJSON("http://localhost:8080/linkActorFilm/"+filmId + "/" + actorId, function(){
+					if(data == 0) location.href = location.href;
+					
+				});
+			});
 		});	
 	});
 </script>
@@ -45,6 +59,7 @@
 			<td> 
 				<input type="text" id='filmInput' /> 
 				<input type="hidden" id="idFilm"/>
+				<div id="idActor" th:text="${actor.actorId}"></div>
 			</td>
 			<td> 
 				<input type="button" 
