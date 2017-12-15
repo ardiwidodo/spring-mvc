@@ -27,6 +27,9 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
+import org.hibernate.validator.constraints.Email;
+
 /**
  *
  * @author deph
@@ -52,6 +55,8 @@ public class Actor implements Serializable {
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "first_name")
+    @Email
+    @CreditCardNumber
     private String firstName;
     @Basic(optional = false)
     @NotNull
